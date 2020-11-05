@@ -100,14 +100,14 @@ resolvente:
     FDIV 
     FSTP qword[raiz2] 
     
-    ;Paso a la pila los valores de pila de forma en que las reciba la llamada a la funcion printf como parametros a imprimir mas el formato de salida.
+    ;Paso a la pila los valores de las raices de forma en que las reciba la llamada a la funcion printf como parametros a imprimir mas el formato de salida.
     push dword[raiz2+4] ;Apilo la variable en dos partes para parsear el tamaño del quad word.
     push dword[raiz2]
     push dword[raiz1+4]
     push dword[raiz1]
     push formato
-    call printf ;Invoco la funcion externa
-    add esp,20  ;Se debe incrementar el puntero de esp ya que realice el push de 5 variables dword por lo que debo aumentar en 5 bytes el registro.
+    call printf ;Invoco la funcion externa printf
+    add esp,20  ;Se debe incrementar el puntero de esp lo correspondiente a los 5 dword que se transfirieron a la pila.
     
     ;Libero los registros para finalizar
     mov ebp,esp 
